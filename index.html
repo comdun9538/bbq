@@ -3,14 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reserva Barbacoa</title>
+    <title>Reserva de Barbacoa Comunitaria</title>
+    <!-- FullCalendar CSS -->
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
+    <!-- Estilos personalizados -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Contenido del formulario (igual que antes) -->
+    <main class="container">
+        <!-- Paso 1: Selección de fecha/hora -->
+        <div id="paso-1" class="form-step active">
+            <h1>Reserva la Barbacoa <span class="step">Paso 1/2</span></h1>
+            
+            <!-- Contenedor del Calendario -->
+            <div id="calendar" class="calendar-container"></div>
+
+            <form id="form-fecha">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fecha">Fecha *</label>
+                        <input type="date" id="fecha" required min="">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="hora-inicio">Hora inicio *</label>
+                        <select id="hora-inicio" required>
+                            <option value="" disabled selected>Selecciona...</option>
+                            <!-- Opciones generadas por JavaScript -->
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="hora-fin">Hora fin *</label>
+                        <select id="hora-fin" required disabled>
+                            <option value="" disabled selected>Primero elige hora inicio</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-submit">Ver disponibilidad</button>
+            </form>
+        </div>
+
+        <!-- Paso 2a: Campos restantes (si está disponible) -->
+        <div id="paso-2a" class="form-step">
+            <h1>Completa tu reserva <span class="step">Paso 2/2</span></h1>
+            
+            <!-- Calendario visible en todos los pasos -->
+            <div id="calendar-paso2" class="calendar-container"></div>
+
+            <form id="form-reserva">
+                <input type="hidden" id="fecha-confirmada">
+                <input type="hidden" id="hora-inicio-confirmada">
+                <input type="hidden" id="hora-fin-confirmada">
+                
+                <div class="form-group">
+                    <label for="escalera">Escalera *</label>
+                    <select id="escalera" required>
+                        <option value="" disabled selected>Selecciona...</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="piso-puerta">Piso y Puerta *</label>
+                    <select id="piso-puerta" required>
+                        <option value="" disabled selected>Selecciona...</option>
+                        <option value="1-1">1º - Puerta 1</option>
+                        <option value="1-2">1º - Puerta 2</option>
+                        <option value="2-1">2º - Puerta 1</option>
+                        <option value="2-2">2º - Puerta 2</option>
+                        <option value="3-1">3º - Puerta 1</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="nombre">Nombre *</label>
+                    <input type="text" id="nombre" required placeholder="Ej: Juan Pérez">
+                </div>
+                
+                <button type="submit" class="btn-submit">Confirmar reserva</button>
+            </form>
+        </div>
+
+        <!-- Paso 2b: Mensaje de conflicto -->
+        <div id="paso-2b" class="form-step">
+            <h1>¡Franja ocupada!</h1>
+            
+            <div id="calendar-conflicto" class="calendar-container"></div>
+
+            <div class="conflict-message">
+                <p>❌ La franja seleccionada está reservada por: <strong id="nombre-reserva-conflicto"></strong></p>
+                <p>¿Quieres contactar con ellos o elegir otra fecha?</p>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="btn-nueva-reserva" class="btn-secondary">Elegir otra fecha</button>
+                <a href="#" id="btn-contactar" class="btn-submit">Contactar</a>
+            </div>
+        </div>
+
+        <!-- Loader -->
+        <div id="loader" class="loader-container">
+            <div class="loader"></div>
+            <p>Validando disponibilidad...</p>
+        </div>
+    </main>
+
+    <!-- FullCalendar JS + Google API -->
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/es.global.min.js'></script>
+    <!-- Script personalizado -->
     <script src="script.js"></script>
 </body>
 </html>
