@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
         locale: 'es',
         initialView: 'dayGridMonth',
         events: {
-            url: `https://www.googleapis.com/calendar/v3/calendars/8253f23161a0f3e35319182be8722caef23234ea85a779fec7aacbc39b389151@group.calendar.google.com/events?key=AIzaSyB7H4yKvR8qZ7qXwQYwQYwQYwQYwQYwQYwQ`, // Key pública genérica
+            url: `https://www.googleapis.com/calendar/v3/calendars/8253f23161a0f3e35319182be8722caef23234ea85a779fec7aacbc39b389151@group.calendar.google.com
+/events?key=AIzaSyB7H4yKvR8qZ7qXwQYwQYwQYwQYwQYwQYwQ`, // Key pública genérica
             extraParams: {
                 timeMin: new Date().toISOString(),
                 singleEvents: true,
