@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
         locale: 'es',
         initialView: 'dayGridMonth',
         events: {
-            url: 'https://script.google.com/macros/s/AKfycbybsQ7UKI3lf4OiLDcbKBJKbDoDQvHgqK9qlLh1Hpe9P_OFrqMKng68hvKyMywPwdqP9w/exec',
+            url: 'https://script.google.com/macros/s/AKfycbzDmJMSmRcz9l-vpn-RnRLPox7Y3Hks1LGFR1B_j1O2KR7sKfFncABhJvjyjpactCgH/exec',
             method: 'GET',
             extraParams: {
                 timeMin: new Date().toISOString()
